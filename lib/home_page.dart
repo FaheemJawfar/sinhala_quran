@@ -28,6 +28,11 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
              'Bismillahir Rahmanir Raheem',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),
             ),
+            SizedBox(height: 20,),
+
+            Text(
+              'Projects begins... Alhamdulillah',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),
+            ),
           ],
         ),
       ),
