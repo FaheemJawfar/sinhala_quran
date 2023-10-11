@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(height: 20,),
 
             Text(
-              'Projects begins... Alhamdulillah',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),
+              'Project begins... Alhamdulillah',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),
             ),
           ],
         ),
