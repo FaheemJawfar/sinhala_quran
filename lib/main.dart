@@ -1,25 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:just_audio_background/just_audio_background.dart';
+import 'package:provider/provider.dart';
+import '../app_config/update_config.dart';
+import 'app_config/app_config.dart';
+import 'utils/shared_preferences.dart';
+import '../providers/quran_provider.dart';
+import 'home/splash_screen.dart';
 
-import 'home_page.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AppPreferences.initialize();
+  UpdateAppConfig.updatePreferencesFromV1();
+
+  await JustAudioBackground.init(
+    androidNotificationChannelId: 'com.faheemapps.tamil_quran.channel.audio',
+    androidNotificationChannelName: 'Audio playback',
+    androidNotificationOngoing: true,
+  );
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => QuranProvider()),
+      ],
 
-        primarySwatch: Colors.blue,
+      child: Builder(
+        builder: (context) {
+          return MaterialApp(
+            title: AppConfig.appName,
+            debugShowCheckedModeBanner: false,
+            theme: context.watch<QuranProvider>().quranTheme,
+            home: const SplashScreen(),
+          );
+        }
       ),
-      home: const MyHomePage(),
     );
   }
 }
-
