@@ -115,21 +115,21 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: MeeraInimai
+    - family: NotoSansSinhala
       fonts:
-        - asset: assets/fonts/MeeraInimai-Regular.ttf
+        - asset: assets/fonts/NotoSansSinhala.ttf
 
-    - family: HindMadurai
+    - family: NotoSerifSinhala
       fonts:
-        - asset: assets/fonts/HindMadurai-Regular.ttf
+        - asset: assets/fonts/NotoSerifSinhala.ttf
 
-    - family: MuktaMalar
+    - family: AbhayaLibre
       fonts:
-        - asset: assets/fonts/MuktaMalar-Regular.ttf
+        - asset: assets/fonts/AbhayaLibre-Regular.ttf
 
-    - family: NotoSansTamil
+    - family: Yaldevi
       fonts:
-        - asset: assets/fonts/NotoSansTamil.ttf
+        - asset: assets/fonts/Yaldevi.ttf
 
     - family: AlQalam
       fonts:

@@ -85,7 +85,7 @@ class _QuranAudioPlayerScreenState extends State<QuranAudioPlayerScreen> {
             // Metadata to display in the notification:
             album: quranProvider.selectedReciterDetails.name,
             title: getSuraName(selectedSuraIndex),
-            artUri: Uri.parse('file:///android_asset/flutter_assets/assets/icon/quran_icon.png'),
+            artUri: Uri.parse('file:///assets/flutter_assets/assets/icon/quran_icon.png'),
           ),
         ),);
         currentUrl = newUrl;

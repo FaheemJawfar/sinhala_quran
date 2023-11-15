@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../app_config/app_config.dart';
 import '../app_config/color_config.dart';
 import '../bookmarks/bookmark.dart';
 import '../bookmarks/bookmark_helper.dart';
@@ -175,7 +176,7 @@ class QuranProvider extends ChangeNotifier {
     return TextSpan(children: spans);
   }
 
-  String _tamilFont = 'MUktaMalar';
+  String _tamilFont = AppConfig.appDefaultFont;
 
   String get tamilFont => AppPreferences.getString('tamilFont') ?? _tamilFont;
 

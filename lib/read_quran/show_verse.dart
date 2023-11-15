@@ -133,7 +133,7 @@ class _ShowVerseState extends State<ShowVerse> {
                   style: TextStyle(
                     fontSize: quranProvider.tamilFontSize * 0.8,
                     // Adjust the size as needed
-                    fontFamily: 'NotoSansTamil',
+                    fontFamily: 'NotoSansSinhala',
                     color: quranProvider.isDarkMode ? Colors.white70 : Colors.green.shade800,
                     // fontWeight: FontWeight.bold,
                   ),

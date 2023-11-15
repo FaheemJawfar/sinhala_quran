@@ -7,14 +7,14 @@ import '../read_quran/sura_details.dart';
 import '../read_quran/sura_translation_screen.dart';
 import '../providers/quran_provider.dart';
 
-class SuraListTamilScreen extends StatefulWidget {
-  const SuraListTamilScreen({Key? key}) : super(key: key);
+class SuraListTranslationScreen extends StatefulWidget {
+  const SuraListTranslationScreen({Key? key}) : super(key: key);
 
   @override
-  State<SuraListTamilScreen> createState() => _SuraListTamilScreenState();
+  State<SuraListTranslationScreen> createState() => _SuraListTranslationScreenState();
 }
 
-class _SuraListTamilScreenState extends State<SuraListTamilScreen> {
+class _SuraListTranslationScreenState extends State<SuraListTranslationScreen> {
   late final quranProvider = Provider.of<QuranProvider>(context, listen: true);
 
 
@@ -81,7 +81,7 @@ class _SuraListTamilScreenState extends State<SuraListTamilScreen> {
               '${suraDetails.suraNumber}.',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 22,
+                fontSize: 20,
                 color: quranProvider.isDarkMode ? Colors.white: Colors.black45,
               ),
             ),

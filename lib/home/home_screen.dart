@@ -125,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen>
       body: TabBarView(
         controller: _tabController,
         children: const [
-          SuraListTamilScreen(),
+          SuraListTranslationScreen(),
           SuraListArabicScreen(),
           BookmarksScreen(),
         ],

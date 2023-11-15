@@ -4,8 +4,8 @@ import 'app_config.dart';
 
 class ColorConfig {
 
-  static Color primaryColor = Colors.green;
-  static Color backgroundColor = Colors.green.shade50;
+  static Color primaryColor = Colors.deepOrange;
+  static Color backgroundColor = Colors.deepOrange.shade50;
   static Color popupColor = Colors.green.shade100;
   static Color buttonColor = Colors.green.shade700;
 
@@ -27,7 +27,7 @@ class ColorConfig {
 
 
   static ThemeData quranLightTheme = ThemeData(
-    primarySwatch: Colors.green,
+    primarySwatch: Colors.deepOrange,
     brightness: Brightness.light,
     fontFamily: AppConfig.appDefaultFont,
   );

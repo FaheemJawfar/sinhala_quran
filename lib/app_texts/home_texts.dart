@@ -6,7 +6,7 @@ class HomeTexts {
   static const String arabicAndTranslation = 'அரபு மூலம் மற்றும் மொழிபெயர்ப்பு';
 
   // Sura List Arabic Screen
-  static const String verseCount = 'வசனங்கள்:';
+  static const String verseCount = 'වැකි ගණන:';
 
   // Sura List Tamil Screen
   static const String continueReading = 'வாசிப்பைத் தொடர்க...';
