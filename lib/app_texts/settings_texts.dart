@@ -3,8 +3,8 @@ class SettingsTexts {
   static const String settings = 'Settings';
   static const String darkMode = 'Dark Mode';
   static const String languageTranslation = 'සිංහල පරිවර්තනය';
-  static const String translationIconPath = 'assets/images/tamil.png';
-  static const String translationFont = 'සිංහල අකුරු ( Sinhala Font )';
+  static const String translationIconPath = 'assets/images/sinhala-letter.png';
+  static const String translationFont = 'සිංහල අකුරු (Sinhala Font)';
   static const String bismillahTranslation = 'අල්ලාහ්ගේ නාමයෙන් ...';
   static const String arabicIconPath = 'assets/images/arabic.png';
   static const String arabicFont = 'අරාබි අකුරු (Arabic Font)';

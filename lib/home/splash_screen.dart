@@ -69,8 +69,8 @@ class _SplashScreenState extends State<SplashScreen> {
                 : ColorConfig.backgroundColor,
             quranProvider.isDarkMode
                 ? Colors.black45
-                : ColorConfig.primaryColor,
-            quranProvider.isDarkMode ? Colors.black54 : ColorConfig.primaryColor,
+                : Colors.red.shade900,
+           // quranProvider.isDarkMode ? Colors.black54 : ColorConfig.primaryColor,
            // quranProvider.isDarkMode ? Colors.black : Colors.green.shade900,
           ],
         ),
