@@ -6,9 +6,9 @@ class ColorConfig {
 
   static Color primaryColor = Colors.deepOrange;
   static Color backgroundColor = Colors.deepOrange.shade50;
-  static Color popupColor = Colors.green.shade100;
-  static Color buttonColor = Colors.green.shade700;
-
+  static Color popupColor = Colors.deepOrange.shade100;
+  static Color buttonColor = Colors.deepOrange.shade700;
+  static Color popupMenuButtonColor = Colors.deepOrange.shade100;
   static ButtonStyle darkModeButtonStyle = ButtonStyle(
     backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
       if (states.contains(MaterialState.pressed)) {

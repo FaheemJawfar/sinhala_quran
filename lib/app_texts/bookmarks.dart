@@ -1,7 +1,7 @@
 class BookmarksTexts {
   // Bookmarks Screen
   static const String bookmarksWillAppearHere =
-      'நீங்கள் பதிவு செய்த Bookmark களை இங்கே காணலாம்!';
+      'මෙහිදී ඔබට පිටු සලකුණු දැකිය හැක!';
 
       // Bookmark Helper
   static const String bookmarkAdded = 'Bookmark added successfully!';

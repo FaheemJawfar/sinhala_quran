@@ -58,13 +58,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   AssetImage(SettingsTexts.translationIconPath)),
               title: SettingsTexts.translationFont,
               subtitle: SettingsTexts.bismillahTranslation,
-              selectedFont: quranProvider.tamilFont,
+              selectedFont: quranProvider.translationFont,
               onTap: () => _showPopup(
                 child: ShowFontSelector(
-                  selectedFont: quranProvider.tamilFont,
+                  selectedFont: quranProvider.translationFont,
                   translationFonts: quranProvider.languageFontsList,
                   label: SettingsTexts.bismillahTranslation,
-                  onSelected: (value) => quranProvider.tamilFont = value,
+                  onSelected: (value) => quranProvider.translationFont = value,
                 ),
               ),
             ),
@@ -93,7 +93,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: FontSizeSelector(
                 fontSize: quranProvider.tamilFontSize,
                 text: SettingsTexts.bismillahTranslation,
-                fontFamily: quranProvider.tamilFont,
+                fontFamily: quranProvider.translationFont,
                 onChanged: (value) {
                   quranProvider.tamilFontSize = value;
                 },

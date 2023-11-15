@@ -117,7 +117,7 @@ class _ShowVerseState extends State<ShowVerse> {
             text: text.substring(previousMatchEnd, match.start),
             style: TextStyle(
               fontSize: quranProvider.tamilFontSize,
-              fontFamily: quranProvider.tamilFont,
+              fontFamily: quranProvider.translationFont,
               color: quranProvider.isDarkMode ? Colors.white : Colors.black,
             ),
           ));
@@ -169,7 +169,7 @@ class _ShowVerseState extends State<ShowVerse> {
           text: text.substring(previousMatchEnd),
           style: TextStyle(
             fontSize: quranProvider.tamilFontSize,
-            fontFamily: quranProvider.tamilFont,
+            fontFamily: quranProvider.translationFont,
             color: quranProvider.isDarkMode ? Colors.white : Colors.black,
           ),
         ));
@@ -182,7 +182,7 @@ class _ShowVerseState extends State<ShowVerse> {
         text: widget.quranAyaTranslation.text,
         style: TextStyle(
           fontSize: quranProvider.tamilFontSize,
-          fontFamily: quranProvider.tamilFont,
+          fontFamily: quranProvider.translationFont,
           color: quranProvider.isDarkMode ? Colors.white : Colors.black,
         ),
       ));
@@ -198,7 +198,7 @@ class _ShowVerseState extends State<ShowVerse> {
 
   Widget getPopupMenuItem(IconData icon, String title) {
     return ListTile(
-      iconColor: quranProvider.isDarkMode ? null : Colors.green.shade700,
+      iconColor: quranProvider.isDarkMode ? null : ColorConfig.buttonColor,
       contentPadding: EdgeInsets.zero,
       leading: Icon(icon),
       title: Text(title),
@@ -218,7 +218,7 @@ class _ShowVerseState extends State<ShowVerse> {
           ),
         ),
         PopupMenuButton<String>(
-          color: quranProvider.isDarkMode ? null : Colors.green.shade100,
+          color: quranProvider.isDarkMode ? null : ColorConfig.popupColor,
           onSelected: (String value) {
             switch (value) {
               case 'shareVerse':
@@ -307,7 +307,7 @@ class _ShowVerseState extends State<ShowVerse> {
                 child: widget.isPlaying
                     ? Icon(
                         Icons.stop_circle,
-                        color: quranProvider.isDarkMode ? Colors.white : Colors.red,
+                        color: quranProvider.isDarkMode ? Colors.white : Colors.red.shade900,
                       )
                     : Icon(
                         Icons.play_circle,
@@ -372,7 +372,7 @@ class _ShowVerseState extends State<ShowVerse> {
                bismiTamil,
                 style: TextStyle(
                   fontSize: quranProvider.tamilFontSize,
-                  fontFamily: quranProvider.tamilFont,
+                  fontFamily: quranProvider.translationFont,
                   color: quranProvider.isDarkMode ? Colors.white : Colors.black,
                 ),
               ),

@@ -1,13 +1,13 @@
 class SupportUsTexts {
 // Donation Screen
-  static const String donateUs = 'ஆதரவு வழங்க!';
+  static const String donateUs = 'සහයෝගය ලබා දීමට!';
   static const String donationScreenContent =
-      'இந்த திருக்குர்ஆன் தமிழாக்கம் அப்ளிகேசனை நாம் இலவசமாக வழங்கி வருகிறோம்.\nஎங்களுக்கு ஆதரவளிக்க விரும்பினால் கீழே உள்ள முறைகளில் உங்களது நன்கொடைகளை வழங்கலாம்.';
+      'මෙම Sinhala Quran (ශුද්ධ වූ අල්කුර්ආන්) යෙදුම අපි නොමිලයේ පිරිනමන්නෙමු.\nඅපට සහාය දැක්වීමට පහතින් ඇති ක්‍රමවේද සඳහා ඔබේ පරිත්‍යාග ලබා දිය හැක.';
   static const String sendUsingCreditDebitCards =
-      'Credit / Debit Card மூலம் அனுப்ப...';
+      'ක්‍රෙඩිට් / ඩෙබිට් කාඩ් හරහා යවන්න...';
   static const String donateUsButtonLabel = 'Donate us!';
   static const String payPalButtonLabel = 'Donate us!';
-  static const String sendViaBankTransfer = 'வங்கிக் கணக்கு மூலம் அனுப்ப...';
+  static const String sendViaBankTransfer = 'බැංකු ගිණුම හරහා යවන්න...';
   static const String bankAccountDetails = 'Bank Account Details';
   static const String bankAccName = 'Name: J. Faheem';
   static const String bankAccNumber = 'Account Number: 231020082879';
@@ -15,7 +15,7 @@ class SupportUsTexts {
   static const String bankBranchName = 'Branch: Kekirawa';
   static const String bankSwiftCode = 'Swift Code: HBLILKLX';
   static const String bankAccountDetailsTranslation =
-      'வங்கிக் கணக்கு விபரங்கள்';
+      'බැංකු ගිණුම් විස්තර';
 
-  static const String sendViaPayPal = 'PayPal மூலம் அனுப்ப...';
+  static const String sendViaPayPal = 'PayPal හරහා යවන්න...';
 }

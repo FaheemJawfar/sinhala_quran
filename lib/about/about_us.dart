@@ -120,15 +120,15 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                 style: quranProvider.isDarkMode ? ColorConfig.darkModeButtonStyle : null,
               ),
 
-              ElevatedButton.icon(
-                onPressed: () {
-                  Launcher.launchWhatsApp();
-                },
-                icon: const ImageIcon(AssetImage('assets/images/whatsapp.png')),
-                label: const Text(AboutTexts.whatsAppUs),
-
-                style: quranProvider.isDarkMode ? ColorConfig.darkModeButtonStyle : null,
-              ),
+              // ElevatedButton.icon(
+              //   onPressed: () {
+              //     Launcher.launchWhatsApp();
+              //   },
+              //   icon: const ImageIcon(AssetImage('assets/images/whatsapp.png')),
+              //   label: const Text(AboutTexts.whatsAppUs),
+              //
+              //   style: quranProvider.isDarkMode ? ColorConfig.darkModeButtonStyle : null,
+              // ),
             ],
           ),
         ),

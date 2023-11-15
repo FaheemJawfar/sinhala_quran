@@ -1,30 +1,30 @@
 class ReadQuranTexts {
   // Read Sura Pop Up
-  static const String goToVerseTranslation = 'வசனத்திற்குச் செல்க';
-  static const String shareThisChapter = 'அத்தியாயத்தைப் பகிர்க';
-  static const String searchInQuranTranslation = 'திருக்குர்ஆனில் தேடுக';
+  static const String goToVerseTranslation = 'වැකියට යන්න';
+  static const String shareThisChapter = 'පරිච්ඡේදය බෙදාගන්න';
+  static const String searchInQuranTranslation = 'අල්කුර්ආනයේ සොයන්න';
 
 // Show Verse
   static const String share = 'Share';
   static const String addBookmark = 'Add Bookmark';
-  static const String copyArabicAndTranslation = 'Copy Arabic + Tamil';
+  static const String copyArabicAndTranslation = 'Copy Arabic + Sinhala';
   static const String copyArabic = 'Copy Arabic';
-  static const String copyTranslation = 'Copy Tamil';
+  static const String copyTranslation = 'Copy Sinhala';
 
   // Quran Helper
   static const String languageCode = 'ta';
 
 // Verse Helper
-  static const String verseCopied = 'வசனம் பிரதி செய்யப்பட்டது!';
-  static const String holyQuran = 'திருக்குர்ஆன்';
-  static const String getTamilQuran = 'Get Tamil Quran App';
-  static const String balancedVerseCount = 'மீதமுள்ள வசனங்கள்';
+  static const String verseCopied = 'වැකිය පිටපත් කර ඇත';
+  static const String holyQuran = 'ශුද්ධ වූ අල්කුර්ආන්';
+  static const String getTamilQuran = 'Get Sinhala Quran App';
+  static const String balancedVerseCount = 'ඉතුරු වෙකි ගණන';
   static const String downloadQuranApp =
-      'அத்தியாயத்தை முழுமையாக வாசிக்க Tamil Quran (திருக்குர்ஆன்) அப்ளிகேஷனை Download செய்யவும்.';
-  static const String quranTranslation = 'திருக்குர்ஆன் தமிழாக்கம்';
-  static const String chapter = 'அத்தியாயம்';
-  static const String totalVerseCount = 'மொத்த வசனங்கள்';
-  static const String translatedBy = 'மொழிபெயர்ப்பு';
-  static const String chapterCopied = 'அத்தியாயம் பிரதி செய்யப்பட்டது!';
-  static const String noInternet = 'உங்கள் இணைய இணைப்பை சரிபார்க்கவும்!';
+      'පරිච්ඡේදය සම්පූර්ණයෙන් කියවන්න Sinhala Quran (ශුද්ධ වූ අල්කුර්ආන්) අප්ලිකේෂණ බාගත කරන්න.';
+  static const String quranTranslation = 'අර්ථ විවරණය සිංහල බසින්';
+  static const String chapter = 'පරිච්ඡේදය';
+  static const String totalVerseCount = 'වැකි ගණන';
+  static const String translatedBy = 'පරිවර්තනය';
+  static const String chapterCopied = 'පරිච්ඡේදය පිටපත් කර ඇත!';
+  static const String noInternet = 'ඔබගේ අන්තර්ජාල සම්බන්ධතාවය පරීක්ෂා කරන්න!';
 }

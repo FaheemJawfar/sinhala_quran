@@ -32,10 +32,10 @@ class QuranProvider extends ChangeNotifier {
   };
 
   List<String> languageFontsList = const [
-    'MUktaMalar',
-    'HindMadurai',
-    'NotoSansTamil',
-    'MeeraInimai'
+    'NotoSansSinhala',
+    'NotoSerifSinhala',
+    'AbhayaLibre',
+    'Yaldevi'
   ];
 
   List<String> arabicFontsList = const [
@@ -176,13 +176,13 @@ class QuranProvider extends ChangeNotifier {
     return TextSpan(children: spans);
   }
 
-  String _tamilFont = AppConfig.appDefaultFont;
+  String _translationFont = AppConfig.appDefaultFont;
 
-  String get tamilFont => AppPreferences.getString('tamilFont') ?? _tamilFont;
+  String get translationFont => AppPreferences.getString('tamilFont') ?? _translationFont;
 
-  set tamilFont(String value) {
+  set translationFont(String value) {
     AppPreferences.setString('tamilFont', value);
-    _tamilFont = value;
+    _translationFont = value;
     notifyListeners();
   }
 
@@ -219,7 +219,7 @@ class QuranProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  String _selectedReciter = 'alafasy-pj';
+  String _selectedReciter = 'sinhala-quran-amys';
 
   String get selectedReciter =>
       AppPreferences.getString('selectedReciter') ?? _selectedReciter;
@@ -260,12 +260,12 @@ class QuranProvider extends ChangeNotifier {
   }
 
   void clearSettings() {
-    tamilFont = 'MUktaMalar';
+    translationFont = AppConfig.appDefaultFont;
     arabicFont = 'AlQalam';
     tamilFontSize = 19;
     arabicFontSize = 23;
-    selectedTranslation = 'john_trust';
-    selectedReciter = 'alafasy-pj';
+    selectedTranslation = 'rowwad';
+    selectedReciter = 'sinhala-quran-amys';
     isDarkMode = false;
   }
 }

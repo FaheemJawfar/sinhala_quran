@@ -36,34 +36,10 @@ class Reciter {
 
   static final recitersJsonList = [
     {
-      "identifier": "alafasy-pj",
+      "identifier": "sinhala-quran-amys",
       "language": "ta",
-      "name": "மிஷாரி ராஷித் அல்-அபாஸி",
-      "englishName": "Mishary Rashid Al-Afasy",
-      "format": "audio",
-      "type": "surahbysurah"
-    },
-    {
-      "identifier": "abdur-rahman-qiraath-and-tamil",
-      "language": "ta",
-      "name": "தீருவை அப்துர் ரஹ்மான்",
-      "englishName": "Professor Abdur Rahman",
-      "format": "audio",
-      "type": "surahbysurah"
-    },
-    {
-      "identifier": "al-husary-ismail-imdadi",
-      "language": "ta",
-      "name": "முஹம்மத் இஸ்மாயில் இம்தாதி",
-      "englishName": "Mahmoud Khalil Al-Husary & Muhammed Ismail Imdadi",
-      "format": "audio",
-      "type": "surahbysurah"
-    },
-    {
-      "identifier": "abdur-rahman-tamil-only",
-      "language": "ta",
-      "name": "தீருவை அப்துர் ரஹ்மான் - தமிழில் மட்டும்",
-      "englishName": "Professor Abdur Rahman",
+      "name": "සෙයිලාන් මුස්ලිම් තරුණ සංවිධානය",
+      "englishName": "Association of Muslim Youth of Sailan",
       "format": "audio",
       "type": "surahbysurah"
     },

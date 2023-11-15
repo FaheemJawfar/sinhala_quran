@@ -133,7 +133,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               PopupMenuButton<String>(
                                 color: quranProvider.isDarkMode
                                     ? null
-                                    : Colors.green.shade100,
+                                    : ColorConfig.popupColor,
                                 onSelected: (String value) {
                                   switch (value) {
                                     case 'goToVerse':
@@ -265,7 +265,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                   children: textSpans,
                                   style: TextStyle(
                                     fontSize: quranProvider.tamilFontSize,
-                                    fontFamily: quranProvider.tamilFont,
+                                    fontFamily: quranProvider.translationFont,
                                   ),
                                 ),
                               ),
