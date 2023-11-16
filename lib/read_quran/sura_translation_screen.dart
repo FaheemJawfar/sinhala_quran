@@ -3,6 +3,8 @@ import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:sinhala_quran/app_texts/home_texts.dart';
+import 'package:sinhala_quran/utils/image_uri.dart';
 import '../read_quran/quran_aya.dart';
 import '../read_quran/quran_helper.dart';
 import '../app_texts/read_quran_texts.dart';
@@ -145,9 +147,10 @@ class _SuraTranslationScreenState extends State<SuraTranslationScreen> {
             // Specify a unique ID for each media item:
             id: aya.toString(),
             // Metadata to display in the notification:
-            album: quranProvider.selectedReciterDetails.name,
-            title: 'திருக்குர்ஆன் (${translation.suraIndex}:$aya)',
-            //  artUri: Uri.parse('file:///android_asset/flutter_assets/assets/icon/quran_icon.png'),
+            //album: 'මිශාරි රාශිත් අල් අෆාසි',
+            title: '${HomeTexts.theHolyQuran} (${translation.suraIndex}:$aya)',
+            artUri: await ImageUriParser.getImageFileFromAssets('assets/icon/quran_icon.png'),
+
           ),
         ));
       }

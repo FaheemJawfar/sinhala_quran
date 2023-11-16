@@ -15,7 +15,7 @@
 
 
    <application
-        android:label="sinhala_quran"
+        android:label="Sinhala Quran"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
 
