@@ -12,7 +12,7 @@ class ImageUriParser {
     Directory tempDir =  await getApplicationDocumentsDirectory();
     String tempPath = tempDir.path;
     var filePath =
-        '$tempPath/file_01.png'; // file_01.tmp is dump file, can be anything
+        '$tempPath/quran_icon.png';
     return (await File(filePath).writeAsBytes(
         buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes)))
         .uri;

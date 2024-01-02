@@ -64,14 +64,9 @@ class _SplashScreenState extends State<SplashScreen> {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            quranProvider.isDarkMode
-                ? Colors.black12
-                : ColorConfig.backgroundColor,
-            quranProvider.isDarkMode
-                ? Colors.black45
-                : Colors.red.shade900,
-           // quranProvider.isDarkMode ? Colors.black54 : ColorConfig.primaryColor,
-           // quranProvider.isDarkMode ? Colors.black : Colors.green.shade900,
+            quranProvider.isDarkMode ? Colors.blueGrey : Colors.deepOrange.shade50,
+            quranProvider.isDarkMode ? Colors.black87 : Colors.deepOrange.shade500,
+            quranProvider.isDarkMode ? Colors.black87 : Colors.deepOrange,
           ],
         ),
       ),
@@ -133,4 +128,5 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
     );
   }
+
 }

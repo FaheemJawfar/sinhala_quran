@@ -76,14 +76,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
               Divider(
                 color: quranProvider.isDarkMode ? null: ColorConfig.primaryColor,
               ),
-              // const Text(
-              //   AboutTexts.aboutUsContent,
-              //   style: TextStyle(fontSize: 16),
-              //   textAlign: TextAlign.center,
-              // ),
-              // const SizedBox(
-              //   height: 10,
-              // ),
+
 
               const Text(
                 AboutTexts.developedBy,
@@ -120,15 +113,15 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                 style: quranProvider.isDarkMode ? ColorConfig.darkModeButtonStyle : null,
               ),
 
-              // ElevatedButton.icon(
-              //   onPressed: () {
-              //     Launcher.launchWhatsApp();
-              //   },
-              //   icon: const ImageIcon(AssetImage('assets/images/whatsapp.png')),
-              //   label: const Text(AboutTexts.whatsAppUs),
-              //
-              //   style: quranProvider.isDarkMode ? ColorConfig.darkModeButtonStyle : null,
-              // ),
+              ElevatedButton.icon(
+                onPressed: () {
+                  Launcher.launchWhatsApp();
+                },
+                icon: const ImageIcon(AssetImage('assets/images/whatsapp.png')),
+                label: const Text(AboutTexts.whatsAppUs),
+
+                style: quranProvider.isDarkMode ? ColorConfig.darkModeButtonStyle : null,
+              ),
             ],
           ),
         ),
