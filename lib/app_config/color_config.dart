@@ -10,15 +10,15 @@ class ColorConfig {
   static Color buttonColor = Colors.deepOrange.shade700;
   static Color popupMenuButtonColor = Colors.deepOrange.shade100;
   static ButtonStyle darkModeButtonStyle = ButtonStyle(
-    backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+    backgroundColor: WidgetStateProperty.resolveWith<Color>((Set<MaterialState> states) {
       if (states.contains(MaterialState.pressed)) {
         return Colors.black;
       }
       return Colors.transparent;
     }),
-    foregroundColor: MaterialStateProperty.all(Colors.white),
-    overlayColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-      if (states.contains(MaterialState.pressed)) {
+    foregroundColor: WidgetStateProperty.all(Colors.white),
+    overlayColor: WidgetStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+      if (states.contains(WidgetState.pressed)) {
         return Colors.white;
       }
       return Colors.transparent;
@@ -30,11 +30,13 @@ class ColorConfig {
     primarySwatch: Colors.deepOrange,
     brightness: Brightness.light,
     fontFamily: AppConfig.appDefaultFont,
+    useMaterial3: false
   );
 
   static ThemeData quranDarkTheme = ThemeData(
     primarySwatch: Colors.grey,
     brightness: Brightness.dark,
     fontFamily: AppConfig.appDefaultFont,
+      useMaterial3: false
   );
 }
