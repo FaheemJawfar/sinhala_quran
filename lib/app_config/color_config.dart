@@ -3,40 +3,64 @@ import 'package:flutter/material.dart';
 import 'app_config.dart';
 
 class ColorConfig {
+  static const Color primaryColor = Color(0xFFD32F2F); // Red 700
+  static const Color secondaryColor = Color(0xFFEF5350); // Red 400
+  static const Color accentColor = Color(0xFFFFF1F0); // Subtle red tint
+  static const Color backgroundColor = Color(0xFFFFFBFA);
+  static const Color popupColor = Colors.white;
+  static const Color buttonColor = Color(0xFFD32F2F);
+  static const Color popupMenuButtonColor = Color(0xFFFFF1F0);
 
-  static Color primaryColor = Colors.deepOrange;
-  static Color backgroundColor = Colors.deepOrange.shade50;
-  static Color popupColor = Colors.deepOrange.shade100;
-  static Color buttonColor = Colors.deepOrange.shade700;
-  static Color popupMenuButtonColor = Colors.deepOrange.shade100;
   static ButtonStyle darkModeButtonStyle = ButtonStyle(
-    backgroundColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
+    backgroundColor:
+        WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
       if (states.contains(WidgetState.pressed)) {
-        return Colors.black;
+        return Colors.white10;
       }
       return Colors.transparent;
     }),
     foregroundColor: WidgetStateProperty.all(Colors.white),
-    overlayColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
-      if (states.contains(WidgetState.pressed)) {
-        return Colors.white;
-      }
-      return Colors.transparent;
-    }),
   );
 
-
   static ThemeData quranLightTheme = ThemeData(
-    primarySwatch: Colors.deepOrange,
-    brightness: Brightness.light,
+    useMaterial3: true,
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: primaryColor,
+      primary: primaryColor,
+      secondary: secondaryColor,
+      surface: Colors.white,
+      background: backgroundColor,
+      brightness: Brightness.light,
+    ),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: primaryColor,
+      foregroundColor: Colors.white,
+      elevation: 0,
+      centerTitle: true,
+    ),
+    tabBarTheme: const TabBarThemeData(
+      labelColor: Colors.white,
+      unselectedLabelColor: Colors.white70,
+      indicatorSize: TabBarIndicatorSize.tab,
+      indicator: UnderlineTabIndicator(
+        borderSide: BorderSide(color: Colors.white, width: 3),
+      ),
+    ),
     fontFamily: AppConfig.appDefaultFont,
-    useMaterial3: false
   );
 
   static ThemeData quranDarkTheme = ThemeData(
-    primarySwatch: Colors.grey,
-    brightness: Brightness.dark,
+    useMaterial3: true,
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: primaryColor,
+      primary: primaryColor,
+      secondary: secondaryColor,
+      brightness: Brightness.dark,
+    ),
+    appBarTheme: const AppBarTheme(
+      elevation: 0,
+      centerTitle: true,
+    ),
     fontFamily: AppConfig.appDefaultFont,
-      useMaterial3: false
   );
 }
