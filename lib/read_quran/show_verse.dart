@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'dart:convert';
 import 'package:share_plus/share_plus.dart';
 import '../app_config/color_config.dart';
 import '../read_quran/pj_thafseer_content.dart';
@@ -21,13 +22,11 @@ class ShowVerse extends StatefulWidget {
   final bool isPlaying;
 
   const ShowVerse(
-      {
-      required this.quranAyaArabic,
+      {required this.quranAyaArabic,
       required this.quranAyaTranslation,
       required this.playAudio,
       required this.stopAudio,
       required this.isPlaying,
-
       Key? key})
       : super(key: key);
 
@@ -37,7 +36,6 @@ class ShowVerse extends StatefulWidget {
 
 class _ShowVerseState extends State<ShowVerse> {
   late final quranProvider = Provider.of<QuranProvider>(context, listen: true);
-
 
   // void seekTo(Duration position) {
   //   QuranAudioPlayerHelper.audioPlayer.seek(position);
@@ -134,7 +132,9 @@ class _ShowVerseState extends State<ShowVerse> {
                     fontSize: quranProvider.tamilFontSize * 0.8,
                     // Adjust the size as needed
                     fontFamily: 'NotoSansSinhala',
-                    color: quranProvider.isDarkMode ? Colors.white70 : Colors.green.shade800,
+                    color: quranProvider.isDarkMode
+                        ? Colors.white70
+                        : Colors.green.shade800,
                     // fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -176,6 +176,91 @@ class _ShowVerseState extends State<ShowVerse> {
       }
 
       return RichText(text: TextSpan(children: spans));
+    } else if (widget.quranAyaTranslation.footnotes != null &&
+        widget.quranAyaTranslation.footnotes!.isNotEmpty) {
+      // Footnote handling logic (e.g. for ACJU)
+      Map<String, dynamic> footnotesMap = {};
+      try {
+        footnotesMap = jsonDecode(widget.quranAyaTranslation.footnotes!);
+      } catch (e) {
+        debugPrint('Error decoding footnotes: $e');
+      }
+
+      // Match [1], [2] etc.
+      final regex = RegExp(r'\[(\d+)\]');
+      final matches = regex.allMatches(text);
+
+      final spans = <InlineSpan>[];
+      int previousMatchEnd = 0;
+
+      for (final match in matches) {
+        if (match.start > previousMatchEnd) {
+          spans.add(TextSpan(
+            text: text.substring(previousMatchEnd, match.start),
+            style: TextStyle(
+              fontSize: quranProvider.tamilFontSize,
+              fontFamily: quranProvider.translationFont,
+              color: quranProvider.isDarkMode ? Colors.white : Colors.black,
+            ),
+          ));
+        }
+
+        final noteId = match.group(1);
+
+        // Render the [1] as a clickable superscript-like widget
+        spans.add(
+          WidgetSpan(
+            alignment: PlaceholderAlignment.top,
+            child: GestureDetector(
+              onTap: () {
+                if (noteId != null && footnotesMap.containsKey(noteId)) {
+                  _showFootnotePopup(context, noteId, footnotesMap[noteId]);
+                }
+              },
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 2),
+                padding: const EdgeInsets.all(2),
+                decoration: BoxDecoration(
+                  color: quranProvider.isDarkMode
+                      ? Colors.teal.shade900
+                      : Colors.teal.shade50,
+                  borderRadius: BorderRadius.circular(4),
+                  border: Border.all(
+                      color: quranProvider.isDarkMode
+                          ? Colors.tealAccent
+                          : Colors.teal,
+                      width: 0.5),
+                ),
+                child: Text(
+                  noteId ?? '',
+                  style: TextStyle(
+                    fontSize: quranProvider.tamilFontSize * 0.6,
+                    fontWeight: FontWeight.bold,
+                    color: quranProvider.isDarkMode
+                        ? Colors.tealAccent
+                        : Colors.teal.shade800,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+
+        previousMatchEnd = match.end;
+      }
+
+      if (previousMatchEnd < text.length) {
+        spans.add(TextSpan(
+          text: text.substring(previousMatchEnd),
+          style: TextStyle(
+            fontSize: quranProvider.tamilFontSize,
+            fontFamily: quranProvider.translationFont,
+            color: quranProvider.isDarkMode ? Colors.white : Colors.black,
+          ),
+        ));
+      }
+
+      return RichText(text: TextSpan(children: spans));
     } else {
       return RichText(
           text: TextSpan(
@@ -187,6 +272,36 @@ class _ShowVerseState extends State<ShowVerse> {
         ),
       ));
     }
+  }
+
+  void _showFootnotePopup(BuildContext context, String id, String content) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor:
+            quranProvider.isDarkMode ? Colors.grey[900] : Colors.white,
+        title: Text(
+          'Footnote $id',
+          style: TextStyle(
+              color: quranProvider.isDarkMode ? Colors.white : Colors.black),
+        ),
+        content: SingleChildScrollView(
+          child: Text(
+            content,
+            style: TextStyle(
+                fontSize: 16,
+                color:
+                    quranProvider.isDarkMode ? Colors.white70 : Colors.black87),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Close'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -230,7 +345,9 @@ class _ShowVerseState extends State<ShowVerse> {
                 quranProvider.addBookmark(
                   Bookmark(
                     suraNumber: quranProvider.selectedSuraNumber.toString(),
-                    verseNumber:getFirstVerseInList( widget.quranAyaTranslation.ayaNumberList).toString(),
+                    verseNumber: getFirstVerseInList(
+                            widget.quranAyaTranslation.ayaNumberList)
+                        .toString(),
                   ),
                   context,
                 );
@@ -307,11 +424,15 @@ class _ShowVerseState extends State<ShowVerse> {
                 child: widget.isPlaying
                     ? Icon(
                         Icons.stop_circle,
-                        color: quranProvider.isDarkMode ? Colors.white : Colors.red.shade900,
+                        color: quranProvider.isDarkMode
+                            ? Colors.white
+                            : Colors.red.shade900,
                       )
                     : Icon(
                         Icons.play_circle,
-                        color: quranProvider.isDarkMode ? Colors.white70 : ColorConfig.primaryColor,
+                        color: quranProvider.isDarkMode
+                            ? Colors.white70
+                            : ColorConfig.primaryColor,
                       )),
           ),
         ),
@@ -340,9 +461,9 @@ class _ShowVerseState extends State<ShowVerse> {
 
   Widget buildBismi() {
     String bismiArabic = quranProvider.bismillahArabic.text;
-    String bismiTamil =  quranProvider.bismillahTranslation.text;
+    String bismiTamil = quranProvider.bismillahTranslation.text;
 
-    if(quranProvider.selectedTranslation == 'tntj'){
+    if (quranProvider.selectedTranslation == 'tntj') {
       RegExp numberPattern = RegExp(r'\d+');
       bismiTamil = bismiTamil.replaceAll(numberPattern, '');
     }
@@ -369,7 +490,7 @@ class _ShowVerseState extends State<ShowVerse> {
               ),
               const SizedBox(height: 8),
               Text(
-               bismiTamil,
+                bismiTamil,
                 style: TextStyle(
                   fontSize: quranProvider.tamilFontSize,
                   fontFamily: quranProvider.translationFont,
@@ -387,24 +508,22 @@ class _ShowVerseState extends State<ShowVerse> {
     List thafseerList = quranProvider.selectedTranslation == 'pj'
         ? PJThafseerContent.thafseerList
         : quranProvider.selectedTranslation == 'tntj'
-        ? TNTJThafseerContent.thafseerList
-        : [];
-    Thafseer selectedItem = Thafseer.getSelectedExplanation(tappedNumber, thafseerList);
+            ? TNTJThafseerContent.thafseerList
+            : [];
+    Thafseer selectedItem =
+        Thafseer.getSelectedExplanation(tappedNumber, thafseerList);
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return ThafseerPopup(
-        selectedThafseer: selectedItem);
+        return ThafseerPopup(selectedThafseer: selectedItem);
       },
     );
   }
-  
-  
-  int getFirstVerseInList(String ayaList){
-    List<int> allVerses = ayaList.split(',')
-        .map((str) => int.parse(str))
-        .toList();
-    
+
+  int getFirstVerseInList(String ayaList) {
+    List<int> allVerses =
+        ayaList.split(',').map((str) => int.parse(str)).toList();
+
     return allVerses.first;
   }
 }
