@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:provider/provider.dart';
 import '../app_texts/quran_audio_texts.dart';
 import '../providers/quran_provider.dart';
-import '../common_widgets/loading_indicator.dart';
+
 import '../app_config/color_config.dart';
 import '../utils/check_connection.dart';
 import '../read_quran/quran_helper.dart';
@@ -40,28 +41,26 @@ class _QuranAudioPlayerScreenState extends State<QuranAudioPlayerScreen> {
     initAudioPlayer();
   }
 
-  initAudioPlayer(){
-   try {
-    // audioPlayer = QuranAudioPlayerHelper.audioPlayer;
-     audioPlayer.durationStream.listen((updatedDuration) {
-       if (!mounted) return;
-       setState(() {
-         duration = updatedDuration ?? Duration.zero;
-       });
-     });
+  initAudioPlayer() {
+    try {
+      // audioPlayer = QuranAudioPlayerHelper.audioPlayer;
+      audioPlayer.durationStream.listen((updatedDuration) {
+        if (!mounted) return;
+        setState(() {
+          duration = updatedDuration ?? Duration.zero;
+        });
+      });
 
-     audioPlayer.positionStream.listen((updatedPosition) {
-       if (!mounted) return;
-       setState(() {
-         position = updatedPosition;
-       });
-     });
-   } catch (e){
-     debugPrint(e.toString());
-   }
+      audioPlayer.positionStream.listen((updatedPosition) {
+        if (!mounted) return;
+        setState(() {
+          position = updatedPosition;
+        });
+      });
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
-
-
 
   Future<void> playAudio() async {
     try {
@@ -76,19 +75,22 @@ class _QuranAudioPlayerScreenState extends State<QuranAudioPlayerScreen> {
       );
 
       if (currentUrl != newUrl) {
-      //  await audioPlayer.setUrl(newUrl);
-        
-        await audioPlayer.setAudioSource(AudioSource.uri(
-          Uri.parse(newUrl),
-          tag: MediaItem(
-            // Specify a unique ID for each media item:
-            id: selectedSuraIndex.toString(),
-            // Metadata to display in the notification:
-            album: quranProvider.selectedReciterDetails.name,
-            title: getSuraName(selectedSuraIndex),
-            artUri: await ImageUriParser.getImageFileFromAssets('assets/icon/quran_icon.png'),
+        //  await audioPlayer.setUrl(newUrl);
+
+        await audioPlayer.setAudioSource(
+          AudioSource.uri(
+            Uri.parse(newUrl),
+            tag: MediaItem(
+              // Specify a unique ID for each media item:
+              id: selectedSuraIndex.toString(),
+              // Metadata to display in the notification:
+              album: quranProvider.selectedReciterDetails.name,
+              title: getSuraName(selectedSuraIndex),
+              artUri: await ImageUriParser.getImageFileFromAssets(
+                  'assets/icon/quran_icon.png'),
+            ),
           ),
-        ),);
+        );
         currentUrl = newUrl;
         position = Duration.zero;
       }
@@ -141,7 +143,7 @@ class _QuranAudioPlayerScreenState extends State<QuranAudioPlayerScreen> {
 
   @override
   void dispose() {
-   // audioPlayer.dispose();
+    // audioPlayer.dispose();
     super.dispose();
   }
 
@@ -186,7 +188,10 @@ class _QuranAudioPlayerScreenState extends State<QuranAudioPlayerScreen> {
       appBar: AppBar(
         title: FittedBox(
             fit: BoxFit.contain,
-            child: Text(quranProvider.selectedReciterDetails.name)),
+            child: Text(
+              quranProvider.selectedReciterDetails.name,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            )),
         actions: [
           IconButton(
               onPressed: () {
@@ -204,7 +209,10 @@ class _QuranAudioPlayerScreenState extends State<QuranAudioPlayerScreen> {
                   },
                 );
               },
-              icon: const Icon(Icons.edit)),
+              icon: const Icon(
+                LucideIcons.userRound,
+                size: 24,
+              )),
           const HomeScreenPopupMenu(),
         ],
       ),
@@ -219,10 +227,15 @@ class _QuranAudioPlayerScreenState extends State<QuranAudioPlayerScreen> {
                   '${SuraDetails.suraList[index].suraNumber}. ${getSuraName(index)}',
                   style: TextStyle(
                       color: selectedSuraIndex == index
-                          ? Colors.white
+                          ? quranProvider.isDarkMode
+                              ? Colors.white
+                              : ColorConfig.primaryColor
                           : quranProvider.isDarkMode
                               ? Colors.white70
                               : Colors.black,
+                      fontWeight: selectedSuraIndex == index
+                          ? FontWeight.bold
+                          : FontWeight.normal,
                       fontSize: 18),
                 ),
                 onTap: () {
@@ -234,7 +247,15 @@ class _QuranAudioPlayerScreenState extends State<QuranAudioPlayerScreen> {
                 tileColor: selectedSuraIndex == index
                     ? quranProvider.isDarkMode
                         ? Colors.black45
-                        : Colors.deepOrange.shade400
+                        : ColorConfig.primaryColor.withValues(alpha: 0.1)
+                    : null,
+                trailing: selectedSuraIndex == index
+                    ? Icon(
+                        LucideIcons.volume2,
+                        color: quranProvider.isDarkMode
+                            ? Colors.white
+                            : ColorConfig.primaryColor,
+                      )
                     : null,
               );
             },
@@ -247,10 +268,16 @@ class _QuranAudioPlayerScreenState extends State<QuranAudioPlayerScreen> {
             margin: const EdgeInsets.all(5),
             padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
-              color:
-                  quranProvider.isDarkMode ? Colors.black45 : ColorConfig.popupColor,
+              color: quranProvider.isDarkMode ? Colors.grey[900] : Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.1),
+                  blurRadius: 10,
+                  offset: const Offset(0, -5),
+                ),
+              ],
               borderRadius: const BorderRadius.all(
-                Radius.circular(15),
+                Radius.circular(20),
               ),
             ),
             child: Column(
@@ -260,15 +287,19 @@ class _QuranAudioPlayerScreenState extends State<QuranAudioPlayerScreen> {
                 Flexible(
                   child: Text(
                     getSuraName(selectedSuraIndex),
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 15),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: quranProvider.isDarkMode
+                            ? Colors.white
+                            : Colors.black87),
                     textAlign: TextAlign.center,
                   ),
                 ),
                 Slider(
-                  value: suraPlayed ? position.inSeconds.toDouble(): 0,
+                  value: suraPlayed ? position.inSeconds.toDouble() : 0,
                   min: 0.0,
-                  max: suraPlayed ? duration.inSeconds.toDouble(): 0,
+                  max: suraPlayed ? duration.inSeconds.toDouble() : 0,
                   onChanged: (double value) {
                     seekAudio(Duration(seconds: value.toInt()));
                   },
@@ -277,14 +308,24 @@ class _QuranAudioPlayerScreenState extends State<QuranAudioPlayerScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      suraPlayed ? formatDuration(position):formatDuration(Duration.zero),
-                      style: const TextStyle(fontSize: 18),
+                      suraPlayed
+                          ? formatDuration(position)
+                          : formatDuration(Duration.zero),
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: quranProvider.isDarkMode
+                              ? Colors.white60
+                              : Colors.grey[600]),
                     ),
                     Text(
                       isLoading || !suraPlayed
                           ? formatDuration(Duration.zero)
                           : formatDuration(duration),
-                      style: const TextStyle(fontSize: 18),
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: quranProvider.isDarkMode
+                              ? Colors.white60
+                              : Colors.grey[600]),
                     ),
                   ],
                 ),
@@ -293,31 +334,61 @@ class _QuranAudioPlayerScreenState extends State<QuranAudioPlayerScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     IconButton(
-                      icon: const Icon(
-                        Icons.skip_previous,
-                        size: 40,
+                      icon: Icon(
+                        LucideIcons.skipBack,
+                        size: 30,
+                        color: quranProvider.isDarkMode
+                            ? Colors.white
+                            : Colors.grey[800],
                       ),
                       onPressed: playPrevious,
                     ),
-                    IconButton(
-                      icon: isLoading
-                          ? LoadingIndicator(
-                              color: quranProvider.isDarkMode
-                                  ? Colors.grey
-                                  : ColorConfig.primaryColor,
-                            )
-                          : audioPlayer.playing && suraPlayed
-                              ? const Icon(
-                                  Icons.pause,
-                                  size: 40,
-                                )
-                              : const Icon(Icons.play_arrow, size: 40),
-                      onPressed: audioPlayer.playing ? pauseAudio : playAudio,
+                    const SizedBox(width: 20),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: ColorConfig.primaryColor,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color:
+                                ColorConfig.primaryColor.withValues(alpha: 0.4),
+                            blurRadius: 10,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: IconButton(
+                        iconSize: 32,
+                        padding: const EdgeInsets.all(12),
+                        icon: isLoading
+                            ? const SizedBox(
+                                width: 24,
+                                height: 24,
+                                child: CircularProgressIndicator(
+                                  color: Colors.white,
+                                  strokeWidth: 3,
+                                ),
+                              )
+                            : audioPlayer.playing && suraPlayed
+                                ? const Icon(
+                                    LucideIcons.pause,
+                                    color: Colors.white,
+                                  )
+                                : const Icon(
+                                    LucideIcons.play,
+                                    color: Colors.white,
+                                  ),
+                        onPressed: audioPlayer.playing ? pauseAudio : playAudio,
+                      ),
                     ),
+                    const SizedBox(width: 20),
                     IconButton(
-                      icon: const Icon(
-                        Icons.skip_next,
-                        size: 40,
+                      icon: Icon(
+                        LucideIcons.skipForward,
+                        size: 30,
+                        color: quranProvider.isDarkMode
+                            ? Colors.white
+                            : Colors.grey[800],
                       ),
                       onPressed: playNext,
                     ),

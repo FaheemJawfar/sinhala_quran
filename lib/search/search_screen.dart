@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import '../app_texts/search_texts.dart';
@@ -43,7 +44,10 @@ class _SearchScreenState extends State<SearchScreen> {
       backgroundColor:
           quranProvider.isDarkMode ? null : ColorConfig.backgroundColor,
       appBar: AppBar(
-        title: const Text(SearchTexts.searchInQuran),
+        title: const Text(
+          SearchTexts.searchInQuran,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+        ),
       ),
       body: GestureDetector(
         onTap: () {
@@ -62,7 +66,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 },
                 decoration: const InputDecoration(
                     hintText: SearchTexts.enterWordToSearch,
-                    prefixIcon: Icon(Icons.search)),
+                    prefixIcon: Icon(LucideIcons.search)),
               ),
             ),
             if (_searchController.text.isNotEmpty)
@@ -98,7 +102,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               .substring(match.start, match.end),
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.red,
+                            color: ColorConfig.primaryColor,
                           ),
                         ),
                       );
@@ -149,13 +153,12 @@ class _SearchScreenState extends State<SearchScreen> {
                                                   )));
                                       break;
                                     case 'shareVerse':
-                                      Share.share(
-                                          VerseHelper.getVerseCopy(
-                                              quranProvider
-                                                  .filterOneAyaTranslation(
-                                                      translation.suraIndex,
-                                                      translation.ayaIndex),
-                                              'copy', context));
+                                      Share.share(VerseHelper.getVerseCopy(
+                                          quranProvider.filterOneAyaTranslation(
+                                              translation.suraIndex,
+                                              translation.ayaIndex),
+                                          'copy',
+                                          context));
                                       break;
                                     case 'addBookmark':
                                       quranProvider.addBookmark(
@@ -175,7 +178,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                                 .filterOneAyaTranslation(
                                                     translation.suraIndex,
                                                     translation.ayaIndex),
-                                            'copy', context),
+                                            'copy',
+                                            context),
                                         context,
                                       );
                                       break;
@@ -186,7 +190,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                                   .filterOneAyaTranslation(
                                                       translation.suraIndex,
                                                       translation.ayaIndex),
-                                              'copy_arabic', context),
+                                              'copy_arabic',
+                                              context),
                                           context);
 
                                       break;
@@ -197,7 +202,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                                   .filterOneAyaTranslation(
                                                       translation.suraIndex,
                                                       translation.ayaIndex),
-                                              'copy_translation', context),
+                                              'copy_translation',
+                                              context),
                                           context);
                                       break;
                                   }
@@ -255,7 +261,10 @@ class _SearchScreenState extends State<SearchScreen> {
                               Align(
                                 alignment: Alignment.topRight,
                                 child: RichText(
-                                  text: quranProvider.getArabicAyaListFromTranslation(translation, quranProvider.arabicFontSize),
+                                  text: quranProvider
+                                      .getArabicAyaListFromTranslation(
+                                          translation,
+                                          quranProvider.arabicFontSize),
                                   textAlign: TextAlign.right,
                                 ),
                               ),

@@ -16,7 +16,6 @@ class SuraListArabicScreen extends StatefulWidget {
 class _SuraListArabicScreenState extends State<SuraListArabicScreen> {
   late final quranProvider = Provider.of<QuranProvider>(context, listen: true);
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,21 +38,24 @@ class _SuraListArabicScreenState extends State<SuraListArabicScreen> {
                   leading: Text(
                     '${sura.suraNumber}. ',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 22,
-                      color: quranProvider.isDarkMode ? Colors.white: Colors.black45,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                      color: quranProvider.isDarkMode
+                          ? Colors.white
+                          : Colors.black45,
                     ),
                   ),
                   title: Text(
                     sura.tamilName,
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: quranProvider.isDarkMode ? Colors.white : Colors.black,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                      color: quranProvider.isDarkMode
+                          ? Colors.white
+                          : Colors.black,
                     ),
                   ),
-                  subtitle:
-                      Text('${HomeTexts.verseCount} ${sura.verseCount}'),
+                  subtitle: Text('${HomeTexts.verseCount} ${sura.verseCount}'),
                   trailing: Image.asset(
                     'assets/images/sura_headers/Surah_${sura.suraNumber}.png',
                     color:

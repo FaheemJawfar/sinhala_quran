@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../app_config/app_config.dart';
+import '../app_config/color_config.dart';
+
 import '../app_texts/home_texts.dart';
 import 'quran_hadith_about_quran.dart';
 import '../common_widgets/loading_indicator.dart';
@@ -46,7 +48,6 @@ class _SplashScreenState extends State<SplashScreen> {
         Random().nextInt(AboutQuranReferences.listOfVersesAndHadhiths.length);
   }
 
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -59,15 +60,9 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget _buildSplash() {
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            quranProvider.isDarkMode ? Colors.blueGrey : Colors.deepOrange.shade50,
-            quranProvider.isDarkMode ? Colors.black87 : Colors.deepOrange.shade500,
-            quranProvider.isDarkMode ? Colors.black87 : Colors.deepOrange,
-          ],
-        ),
+        color: quranProvider.isDarkMode
+            ? Colors.black
+            : ColorConfig.backgroundColor,
       ),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(10, 25, 10, 25),
@@ -79,53 +74,83 @@ class _SplashScreenState extends State<SplashScreen> {
               height: 150,
             ),
             const SizedBox(height: 20),
-            const Text(
+            Text(
               HomeTexts.theHolyQuran,
               style: TextStyle(
-                fontSize: 24,
-                color: Colors.white,
+                fontSize: 32,
+                color: quranProvider.isDarkMode
+                    ? Colors.white
+                    : ColorConfig.primaryColor,
                 fontWeight: FontWeight.bold,
+                letterSpacing: 1.5,
               ),
             ),
             const SizedBox(height: 10),
-            const Text(
+            Text(
               HomeTexts.arabicAndTranslation,
               style: TextStyle(
-                fontSize: 16,
-                color: Colors.white,
+                fontSize: 18,
+                color:
+                    quranProvider.isDarkMode ? Colors.white70 : Colors.black54,
+                letterSpacing: 1.2,
               ),
             ),
-            const Divider(),
-            const Spacer(),
-            Text(
-              AboutQuranReferences
-                  .listOfVersesAndHadhiths[selectedQuoteNumber].quote,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Text(
-              AboutQuranReferences
-                  .listOfVersesAndHadhiths[selectedQuoteNumber].reference,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-              ),
-              textAlign: TextAlign.center,
+            Divider(
+              color: quranProvider.isDarkMode ? Colors.white24 : Colors.black12,
+              thickness: 0.5,
             ),
             const Spacer(),
-            const LoadingIndicator(
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+              decoration: BoxDecoration(
+                color: quranProvider.isDarkMode
+                    ? Colors.white.withValues(alpha: 0.1)
+                    : ColorConfig.primaryColor.withValues(alpha: 0.05),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    AboutQuranReferences
+                        .listOfVersesAndHadhiths[selectedQuoteNumber].quote,
+                    style: TextStyle(
+                      color: quranProvider.isDarkMode
+                          ? Colors.white
+                          : Colors.black87,
+                      fontSize: 18,
+                      height: 1.5,
+                      fontStyle: FontStyle.italic,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    AboutQuranReferences
+                        .listOfVersesAndHadhiths[selectedQuoteNumber].reference,
+                    style: TextStyle(
+                      color: quranProvider.isDarkMode
+                          ? Colors.white70
+                          : ColorConfig.primaryColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+            const Spacer(),
+            LoadingIndicator(
               size: 25,
+              color: quranProvider.isDarkMode
+                  ? Colors.white
+                  : ColorConfig.primaryColor,
             ),
           ],
         ),
       ),
     );
   }
-
 }

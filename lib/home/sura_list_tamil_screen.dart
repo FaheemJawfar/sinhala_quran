@@ -79,16 +79,16 @@ class _SuraListTranslationScreenState extends State<SuraListTranslationScreen> {
             leading: Text(
               '${suraDetails.suraNumber}.',
               style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                fontSize: 16,
                 color: quranProvider.isDarkMode ? Colors.white : Colors.black45,
               ),
             ),
             title: Text(
               '${suraDetails.tamilName} ${suraDetails.tamilMeaning != null ? '\n(${suraDetails.tamilMeaning})' : ''}',
               style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
                 color: quranProvider.isDarkMode ? Colors.white : Colors.black,
               ),
             ),

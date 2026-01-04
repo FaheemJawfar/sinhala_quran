@@ -104,7 +104,8 @@ class QuranProvider extends ChangeNotifier {
     return bismillah;
   }
 
-  bool get isPJMode => selectedTranslation == 'pj' || selectedTranslation == 'tntj';
+  bool get isPJMode =>
+      selectedTranslation == 'pj' || selectedTranslation == 'tntj';
 
   List<QuranAya> get selectedSuraTranslation {
     List<QuranAya> content = [];
@@ -139,9 +140,13 @@ class QuranProvider extends ChangeNotifier {
     return _allSurasTamil[sura - 1].listOfAyas[aya - 1];
   }
 
-
   QuranAya filterOneAyaTranslationFromSearch(int sura, int aya) {
-    return _allSurasTamil[sura - 1].listOfAyas.firstWhere((element) => element.ayaNumberList.split(',').map((str) => int.parse(str)).toList().contains(aya));
+    return _allSurasTamil[sura - 1].listOfAyas.firstWhere((element) => element
+        .ayaNumberList
+        .split(',')
+        .map((str) => int.parse(str))
+        .toList()
+        .contains(aya));
   }
 
   TextSpan getArabicAyaListFromTranslation(
@@ -178,7 +183,8 @@ class QuranProvider extends ChangeNotifier {
 
   String _translationFont = AppConfig.appDefaultFont;
 
-  String get translationFont => AppPreferences.getString('tamilFont') ?? _translationFont;
+  String get translationFont =>
+      AppPreferences.getString('tamilFont') ?? _translationFont;
 
   set translationFont(String value) {
     AppPreferences.setString('tamilFont', value);
@@ -197,7 +203,7 @@ class QuranProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  double _tamilFontSize = 19;
+  double _tamilFontSize = 17;
 
   double get tamilFontSize =>
       AppPreferences.getDouble('tamilFontSize') ?? _tamilFontSize;
@@ -208,7 +214,7 @@ class QuranProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  double _arabicFontSize = 23;
+  double _arabicFontSize = 22;
 
   double get arabicFontSize =>
       AppPreferences.getDouble('arabicFontSize') ?? _arabicFontSize;
@@ -241,19 +247,17 @@ class QuranProvider extends ChangeNotifier {
         .firstWhere((reciter) => reciter.identifier == selectedReciter);
   }
 
-
   List<Bookmark> _bookmarkList = BookmarkHelper.getBookmarkList();
 
   get bookmarkList => _bookmarkList;
 
-  addBookmark(Bookmark bookmark, BuildContext context){
+  addBookmark(Bookmark bookmark, BuildContext context) {
     BookmarkHelper.addBookmark(bookmark, context);
     _bookmarkList = BookmarkHelper.getBookmarkList();
     notifyListeners();
   }
 
-
-  deleteBookmark(Bookmark bookmark, BuildContext context){
+  deleteBookmark(Bookmark bookmark, BuildContext context) {
     BookmarkHelper.deleteBookmark(bookmark, context);
     _bookmarkList = BookmarkHelper.getBookmarkList();
     notifyListeners();
@@ -262,8 +266,8 @@ class QuranProvider extends ChangeNotifier {
   void clearSettings() {
     translationFont = AppConfig.appDefaultFont;
     arabicFont = 'AlQalam';
-    tamilFontSize = 19;
-    arabicFontSize = 23;
+    tamilFontSize = 17;
+    arabicFontSize = 22;
     selectedTranslation = 'rowwad';
     selectedReciter = 'sinhala-quran-amys';
     isDarkMode = false;

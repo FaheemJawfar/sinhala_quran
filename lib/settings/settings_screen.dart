@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
+// ... (rest is manual through multiple replace calls or single replace if safe)
+// I will use replace_file_content for import and then multi_replace for icons.
+
 import 'package:provider/provider.dart';
 import '../app_texts/settings_texts.dart';
 import '../app_config/color_config.dart';
@@ -21,14 +25,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
       backgroundColor:
           quranProvider.isDarkMode ? null : ColorConfig.backgroundColor,
       appBar: AppBar(
-        title: const Text(SettingsTexts.settings),
+        title: const Text(
+          SettingsTexts.settings,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListTile(
-              leading: const Icon(Icons.dark_mode),
+              leading: const Icon(LucideIcons.moon),
               title: const Text(SettingsTexts.darkMode),
               trailing: Switch(
                   activeThumbColor: quranProvider.isDarkMode
@@ -41,7 +48,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             _buildDivider(),
             _buildListTile(
-              leadingIcon: Icons.language,
+              leadingIcon: LucideIcons.globe,
               title: SettingsTexts.languageTranslation,
               subtitle: quranProvider.selectedTranslationName,
               onTap: () => _showPopup(
@@ -87,7 +94,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             _buildDivider(),
             _buildListTile(
-              leadingIcon: Icons.text_fields,
+              leadingIcon: LucideIcons.type,
               title: SettingsTexts.translationFontSize,
               subtitle: quranProvider.tamilFontSize.floor().toString(),
               onTap: () => _showPopup(
@@ -102,7 +109,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             _buildDivider(),
             _buildListTile(
-              leadingIcon: Icons.text_fields,
+              leadingIcon: LucideIcons.type,
               title: SettingsTexts.arabicFontSize,
               subtitle: quranProvider.arabicFontSize.floor().toString(),
               onTap: () => _showPopup(
@@ -117,7 +124,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             _buildDivider(),
             _buildListTile(
-              leadingIcon: Icons.record_voice_over,
+              leadingIcon: LucideIcons.mic,
               title: SettingsTexts.quranReciter,
               subtitle: quranProvider.selectedReciterDetails.name,
               onTap: () => _showPopup(
@@ -133,7 +140,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             _buildDivider(),
             _buildListTile(
-              leadingIcon: Icons.restore,
+              leadingIcon: LucideIcons.rotateCcw,
               title: SettingsTexts.resetSettings,
               subtitle: SettingsTexts.resetSettingsInfo,
               onTap: () => _showPopup(
@@ -216,8 +223,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   Widget _buildDivider() {
-    return const Divider(
-      color: Colors.grey,
+    return Divider(
+      color: quranProvider.isDarkMode
+          ? Colors.grey
+          : ColorConfig.primaryColor.withValues(alpha: 0.3),
       thickness: 1,
     );
   }

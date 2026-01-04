@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import '../read_quran/thafseer_screen.dart';
@@ -87,37 +88,29 @@ class _QuranAppDrawerState extends State<QuranAppDrawer> {
             ),
           ),
 
-          if(quranProvider.isPJMode) _buildListTiles(const Icon(Icons.notes),
-              HomeTexts.explanation, context, const ThafseerScreen()),
+          if (quranProvider.isPJMode)
+            _buildListTiles(const Icon(LucideIcons.fileText),
+                HomeTexts.explanation, context, const ThafseerScreen()),
 
-          _buildListTiles(
-              _buildImageIcon('assets/images/quran-audio.png'),
-              HomeTexts.quranAudio,
-              context,
-              const QuranAudioPlayerScreen()),
-          _buildListTiles(const Icon(Icons.search),
+          _buildListTiles(const Icon(LucideIcons.headphones),
+              HomeTexts.quranAudio, context, const QuranAudioPlayerScreen()),
+          _buildListTiles(const Icon(LucideIcons.search),
               HomeTexts.searchInQuran, context, const SearchScreen()),
           _buildActionListTiles(
-            _buildImageIcon('assets/images/fast-forward.png'),
+            const Icon(LucideIcons.navigation),
             (HomeTexts.goToVerse),
             context,
             () => _showVersePicker(context),
           ),
-          _buildListTiles(
-              const Icon(Icons.settings),
-              HomeTexts.settingsTranslation,
-              context,
-              const SettingsScreen()),
-          _buildActionListTiles(const Icon(Icons.share),
+          _buildListTiles(const Icon(LucideIcons.settings),
+              HomeTexts.settingsTranslation, context, const SettingsScreen()),
+          _buildActionListTiles(const Icon(LucideIcons.share2),
               HomeTexts.shareThisAppTranslation, context, () {
             Share.share(HomeTexts.shareAppText);
           }),
 
-          _buildListTiles(
-              const Icon(Icons.info),
-              HomeTexts.aboutUsTranslation,
-              context,
-              const AboutUsScreen()),
+          _buildListTiles(const Icon(LucideIcons.info),
+              HomeTexts.aboutUsTranslation, context, const AboutUsScreen()),
           // _buildListTiles(
           //     _buildImageIcon('assets/images/donation.png'),
           //     HomeTexts.donateUsTranslation,
@@ -129,12 +122,6 @@ class _QuranAppDrawerState extends State<QuranAppDrawer> {
           // }),
         ],
       ),
-    );
-  }
-
-  Widget _buildImageIcon(String imagePath) {
-    return ImageIcon(
-      AssetImage(imagePath),
     );
   }
 

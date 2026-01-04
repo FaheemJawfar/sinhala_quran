@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import '../app_texts/about.dart';
 import '../app_config/app_config.dart';
@@ -25,7 +26,6 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
     super.initState();
   }
 
-
   void getVersionNumber() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     List<String> versionParts = packageInfo.version.split('.');
@@ -39,14 +39,16 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: quranProvider.isDarkMode ? null: ColorConfig.backgroundColor,
+      backgroundColor:
+          quranProvider.isDarkMode ? null : ColorConfig.backgroundColor,
       appBar: AppBar(
-        title: const Text(AboutTexts.aboutUs),
+        title: const Text(
+          AboutTexts.aboutUs,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+        ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -58,7 +60,9 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
               const SizedBox(height: 20),
               CircleAvatar(
                 radius: 40,
-                backgroundColor: quranProvider.isDarkMode ? Colors.transparent: ColorConfig.backgroundColor,
+                backgroundColor: quranProvider.isDarkMode
+                    ? Colors.transparent
+                    : ColorConfig.backgroundColor,
                 backgroundImage: const AssetImage(AppConfig.appLogoPath),
               ),
               const SizedBox(height: 20),
@@ -70,14 +74,16 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
               const SizedBox(height: 5),
               Text(
                 'Version $appVersion',
-                style: TextStyle(fontSize: 18, color: quranProvider.isDarkMode ? Colors.white70: Colors.grey.shade700),
+                style: TextStyle(
+                    fontSize: 18,
+                    color: quranProvider.isDarkMode
+                        ? Colors.white70
+                        : Colors.grey.shade700),
               ),
-
               Divider(
-                color: quranProvider.isDarkMode ? null: ColorConfig.primaryColor,
+                color:
+                    quranProvider.isDarkMode ? null : ColorConfig.primaryColor,
               ),
-
-
               const Text(
                 AboutTexts.developedBy,
                 style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
@@ -85,11 +91,12 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
               ),
               const Text(
                 AboutTexts.developerName,
-                style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
               Divider(
-                color: quranProvider.isDarkMode ? null: ColorConfig.primaryColor,
+                color:
+                    quranProvider.isDarkMode ? null : ColorConfig.primaryColor,
               ),
               const Text(
                 AboutTexts.sendFeedback,
@@ -107,20 +114,21 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                 onPressed: () {
                   Launcher.launchEmail('');
                 },
-                icon: const Icon(Icons.mail),
+                icon: const Icon(LucideIcons.mail),
                 label: const Text(AboutTexts.emailUs),
-
-                style: quranProvider.isDarkMode ? ColorConfig.darkModeButtonStyle : null,
+                style: quranProvider.isDarkMode
+                    ? ColorConfig.darkModeButtonStyle
+                    : null,
               ),
-
               ElevatedButton.icon(
                 onPressed: () {
                   Launcher.launchWhatsApp();
                 },
-                icon: const ImageIcon(AssetImage('assets/images/whatsapp.png')),
+                icon: const Icon(LucideIcons.messageCircle),
                 label: const Text(AboutTexts.whatsAppUs),
-
-                style: quranProvider.isDarkMode ? ColorConfig.darkModeButtonStyle : null,
+                style: quranProvider.isDarkMode
+                    ? ColorConfig.darkModeButtonStyle
+                    : null,
               ),
             ],
           ),
