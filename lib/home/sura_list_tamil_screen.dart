@@ -49,7 +49,12 @@ class _SuraListTranslationScreenState extends State<SuraListTranslationScreen> {
         style: quranProvider.isDarkMode
             ? ColorConfig.darkModeButtonStyle
             : OutlinedButton.styleFrom(
-                side: const BorderSide(color: ColorConfig.popupMenuButtonColor),
+                side: BorderSide(
+                  color: ColorConfig.primaryColor.withValues(alpha: 0.2),
+                ),
+                shape: const StadiumBorder(),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               ),
         child: Text(
           HomeTexts.continueReading,
@@ -57,6 +62,7 @@ class _SuraListTranslationScreenState extends State<SuraListTranslationScreen> {
             color: quranProvider.isDarkMode
                 ? Colors.white
                 : ColorConfig.primaryColor,
+            fontSize: 16,
           ),
         ),
       );
