@@ -6,16 +6,8 @@ import '../read_quran/quran_sura.dart';
 class DataParser {
   static Future<List<QuranSura>> loadXmlFromAssets(
       String selectedTranslation) async {
-    // Map translation keys to XML file names
-    Map<String, String> translationFileMap = {
-      'rowwad': 'sinhalese_mahir',
-      'acju': 'sinhalese_acju',
-      'quran': 'quran',
-    };
-
-    String xmlFileName =
-        translationFileMap[selectedTranslation] ?? selectedTranslation;
-    String xmlFilePath = 'assets/quran_db/$xmlFileName.xml';
+    // Load XML file directly using the translation key
+    String xmlFilePath = 'assets/quran_db/$selectedTranslation.xml';
     List<QuranSura> listOfAllSuras = [];
 
     final xmlString = await rootBundle.loadString(xmlFilePath);
