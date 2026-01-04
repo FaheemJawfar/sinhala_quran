@@ -24,7 +24,7 @@ class QuranProvider extends ChangeNotifier {
   ThemeData get quranTheme =>
       isDarkMode ? ColorConfig.quranDarkTheme : ColorConfig.quranLightTheme;
 
-  String _selectedTranslation = 'rowwad';
+  String _selectedTranslation = 'acju';
 
   Map<String, String> translations = {
     'rowwad': 'රුව්වාද් පරිවර්තන මධ්‍යස්ථානය',
@@ -268,7 +268,7 @@ class QuranProvider extends ChangeNotifier {
     arabicFont = 'AlQalam';
     tamilFontSize = 17;
     arabicFontSize = 22;
-    selectedTranslation = 'rowwad';
+    selectedTranslation = 'acju';
     selectedReciter = 'sinhala-quran-amys';
     isDarkMode = false;
   }

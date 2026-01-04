@@ -195,8 +195,14 @@ class _ShowVerseState extends State<ShowVerse> {
 
       for (final match in matches) {
         if (match.start > previousMatchEnd) {
+          String preText = text.substring(previousMatchEnd, match.start);
+          // Remove the trailing space so the footnote attaches closely to the word
+          if (preText.endsWith(' ')) {
+            preText = preText.substring(0, preText.length - 1);
+          }
+
           spans.add(TextSpan(
-            text: text.substring(previousMatchEnd, match.start),
+            text: preText,
             style: TextStyle(
               fontSize: quranProvider.tamilFontSize,
               fontFamily: quranProvider.translationFont,
@@ -210,35 +216,30 @@ class _ShowVerseState extends State<ShowVerse> {
         // Render the [1] as a clickable superscript-like widget
         spans.add(
           WidgetSpan(
-            alignment: PlaceholderAlignment.top,
-            child: GestureDetector(
-              onTap: () {
-                if (noteId != null && footnotesMap.containsKey(noteId)) {
-                  _showFootnotePopup(context, noteId, footnotesMap[noteId]);
-                }
-              },
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 2),
-                padding: const EdgeInsets.all(2),
-                decoration: BoxDecoration(
-                  color: quranProvider.isDarkMode
-                      ? Colors.teal.shade900
-                      : Colors.teal.shade50,
-                  borderRadius: BorderRadius.circular(4),
-                  border: Border.all(
-                      color: quranProvider.isDarkMode
-                          ? Colors.tealAccent
-                          : Colors.teal,
-                      width: 0.5),
-                ),
-                child: Text(
-                  noteId ?? '',
-                  style: TextStyle(
-                    fontSize: quranProvider.tamilFontSize * 0.6,
-                    fontWeight: FontWeight.bold,
-                    color: quranProvider.isDarkMode
-                        ? Colors.tealAccent
-                        : Colors.teal.shade800,
+            alignment: PlaceholderAlignment.middle,
+            child: Transform.translate(
+              offset: const Offset(0, -5), // Brought closer to text vertically
+              child: GestureDetector(
+                onTap: () {
+                  if (noteId != null && footnotesMap.containsKey(noteId)) {
+                    _showFootnotePopup(context, noteId, footnotesMap[noteId]);
+                  }
+                },
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 0),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 4, vertical: 1), // Tighter padding
+                  decoration: BoxDecoration(
+                    color: ColorConfig.primaryColor.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(10), // Capsule shape
+                  ),
+                  child: Text(
+                    noteId ?? '',
+                    style: TextStyle(
+                      fontSize: quranProvider.tamilFontSize * 0.65,
+                      fontWeight: FontWeight.w900,
+                      color: ColorConfig.primaryColor,
+                    ),
                   ),
                 ),
               ),
@@ -281,7 +282,7 @@ class _ShowVerseState extends State<ShowVerse> {
         backgroundColor:
             quranProvider.isDarkMode ? Colors.grey[900] : Colors.white,
         title: Text(
-          'Footnote $id',
+          '${ReadQuranTexts.note} $id',
           style: TextStyle(
               color: quranProvider.isDarkMode ? Colors.white : Colors.black),
         ),

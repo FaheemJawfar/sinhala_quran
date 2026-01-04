@@ -27,4 +27,5 @@ class ReadQuranTexts {
   static const String translatedBy = 'පරිවර්තනය';
   static const String chapterCopied = 'පරිච්ඡේදය පිටපත් කර ඇත!';
   static const String noInternet = 'ඔබගේ අන්තර්ජාල සම්බන්ධතාවය පරීක්ෂා කරන්න!';
+  static const String note = 'සටහන';
 }
