@@ -29,7 +29,6 @@ class ColorConfig {
       primary: primaryColor,
       secondary: secondaryColor,
       surface: Colors.white,
-      background: backgroundColor,
       brightness: Brightness.light,
     ),
     appBarTheme: const AppBarTheme(

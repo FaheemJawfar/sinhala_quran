@@ -11,13 +11,12 @@ class SuraListTranslationScreen extends StatefulWidget {
   const SuraListTranslationScreen({Key? key}) : super(key: key);
 
   @override
-  State<SuraListTranslationScreen> createState() => _SuraListTranslationScreenState();
+  State<SuraListTranslationScreen> createState() =>
+      _SuraListTranslationScreenState();
 }
 
 class _SuraListTranslationScreenState extends State<SuraListTranslationScreen> {
   late final quranProvider = Provider.of<QuranProvider>(context, listen: true);
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +49,7 @@ class _SuraListTranslationScreenState extends State<SuraListTranslationScreen> {
         style: quranProvider.isDarkMode
             ? ColorConfig.darkModeButtonStyle
             : OutlinedButton.styleFrom(
-                side: BorderSide(color: ColorConfig.popupMenuButtonColor),
+                side: const BorderSide(color: ColorConfig.popupMenuButtonColor),
               ),
         child: Text(
           HomeTexts.continueReading,
@@ -82,7 +81,7 @@ class _SuraListTranslationScreenState extends State<SuraListTranslationScreen> {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
-                color: quranProvider.isDarkMode ? Colors.white: Colors.black45,
+                color: quranProvider.isDarkMode ? Colors.white : Colors.black45,
               ),
             ),
             title: Text(
@@ -93,8 +92,7 @@ class _SuraListTranslationScreenState extends State<SuraListTranslationScreen> {
                 color: quranProvider.isDarkMode ? Colors.white : Colors.black,
               ),
             ),
-            subtitle:
-                Text('${HomeTexts.verseCount} ${suraDetails.verseCount}'),
+            subtitle: Text('${HomeTexts.verseCount} ${suraDetails.verseCount}'),
             trailing: Image.asset(
               'assets/images/sura_headers/Surah_${suraDetails.suraNumber}.png',
               color: quranProvider.isDarkMode ? Colors.white : Colors.black,
