@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../app_config/app_config.dart';
-import '../app_config/color_config.dart';
 import '../app_texts/home_texts.dart';
 import 'quran_hadith_about_quran.dart';
 import '../common_widgets/loading_indicator.dart';

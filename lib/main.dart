@@ -6,7 +6,6 @@ import 'utils/shared_preferences.dart';
 import '../providers/quran_provider.dart';
 import 'home/splash_screen.dart';
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppPreferences.initialize();
@@ -15,10 +14,10 @@ Future<void> main() async {
     androidNotificationChannelId: 'com.faheemapps.sinhala_quran.channel.audio',
     androidNotificationChannelName: 'Audio playback',
     androidNotificationOngoing: true,
+    androidStopForegroundOnPause: true,
   );
   runApp(const MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -29,17 +28,14 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => QuranProvider()),
       ],
-
-      child: Builder(
-        builder: (context) {
-          return MaterialApp(
-            title: AppConfig.appName,
-            debugShowCheckedModeBanner: false,
-            theme: context.watch<QuranProvider>().quranTheme,
-            home: const SplashScreen(),
-          );
-        }
-      ),
+      child: Builder(builder: (context) {
+        return MaterialApp(
+          title: AppConfig.appName,
+          debugShowCheckedModeBanner: false,
+          theme: context.watch<QuranProvider>().quranTheme,
+          home: const SplashScreen(),
+        );
+      }),
     );
   }
 }

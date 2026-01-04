@@ -10,14 +10,14 @@ class ColorConfig {
   static Color buttonColor = Colors.deepOrange.shade700;
   static Color popupMenuButtonColor = Colors.deepOrange.shade100;
   static ButtonStyle darkModeButtonStyle = ButtonStyle(
-    backgroundColor: WidgetStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-      if (states.contains(MaterialState.pressed)) {
+    backgroundColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
+      if (states.contains(WidgetState.pressed)) {
         return Colors.black;
       }
       return Colors.transparent;
     }),
     foregroundColor: WidgetStateProperty.all(Colors.white),
-    overlayColor: WidgetStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+    overlayColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
       if (states.contains(WidgetState.pressed)) {
         return Colors.white;
       }
